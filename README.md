@@ -62,3 +62,15 @@ Run tests:
 Run application:
 
     ./gradlew run
+
+Notes
+-------
+
+There are a few aspects of this service that would ideally be changed/improved before deploying to production
+- The service currently uses the same class for its data entry and response objects,ordinarily they should be
+  separated to minimise dependencies between then controller and repository layers.
+- This service currently contains no exception handling. At this point the service is simple enough not to require
+  exception handling since it has only a single use case, but you would expect exception handling to be added for
+  more complex use cases.
+- This service currently relies on Spring to handle http response codes in failure scenarios. Normally, this would
+  be handled by the application by mapping various exception conditions to different http error codes.
