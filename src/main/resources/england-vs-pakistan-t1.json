@@ -1,0 +1,30 @@
+{
+  "id": "jqpiuhojh;b",
+  "uid": ";ljhcvjgfx",
+  "date": "2020-8-5",
+  "name": "England vs Pakistan 1st Test",
+  "competitors": [
+    {
+      "type": "team",
+      "score": 326,
+      "homeAway": "away",
+      "isWinner": false,
+      "team": {
+        "id": "pakistan",
+        "uid": "pakistan",
+        "name": "Pakistan"
+      }
+    },
+    {
+      "type": "team",
+      "score": 219,
+      "homeAway": "home",
+      "isWinner": true,
+      "team": {
+        "id": "england",
+        "uid": "england",
+        "name": "England"
+      }
+    }
+  ]
+}
