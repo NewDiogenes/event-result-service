@@ -6,7 +6,9 @@ import event.result.model.Competition;
 import event.result.respository.CompetitionResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,5 +42,16 @@ public class ResultScraperService {
         .map(espnResultParser::mapPageDataToCompetition)
         .collect(Collectors.toList());
     return resultRepository.saveAll(competitionList);
+  }
+
+  @PostConstruct
+  private void scrapeTestPage() {
+    try {
+      HtmlPage testPage = webClient.getPage(ResourceUtils
+          .getFile("src/main/resources/TestPage.html").toURI().toURL());
+      getResultsFromWebPage(testPage);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
