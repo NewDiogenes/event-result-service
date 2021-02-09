@@ -7,6 +7,7 @@ import event.result.model.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.w3c.dom.NamedNodeMap;
 
 import java.util.List;
 
@@ -23,6 +24,12 @@ class ESPNCompetitionParserTest {
   private DomNode requestNode;
   @Mock
   private DomNode dateNode;
+  @Mock
+  private NamedNodeMap attrNode;
+  @Mock
+  private DomNode namedItemNode;
+  @Mock
+  private DomNode actualDateNode;
   @Mock
   private DomNode leagueNode;
 
@@ -56,7 +63,9 @@ class ESPNCompetitionParserTest {
 
   private void stubDomNodes() {
     when(requestNode.querySelector(eq(ESPNCompetitionParser.GAME_DATETIME_SELECTOR))).thenReturn(dateNode);
-    when(dateNode.getTextContent()).thenReturn(date);
+    when(dateNode.getAttributes()).thenReturn(attrNode);
+    when(attrNode.getNamedItem(any())).thenReturn(actualDateNode);
+    when(actualDateNode.getTextContent()).thenReturn(date);
 
     when(requestNode.querySelector(eq(ESPNCompetitionParser.GAME_LEAGUE_SELECTOR))).thenReturn(leagueNode);
     when(leagueNode.getTextContent()).thenReturn(league);

@@ -2,6 +2,7 @@ package event.result.service;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import event.result.respository.CompetitionResultRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,6 +24,8 @@ class ResultScraperServiceTest {
 
   @Mock
   private ESPNResultParser resultParser;
+  @Mock
+  private CompetitionResultRepository resultRepository;
 
   private WebClient webClient;
   private static HtmlPage testPage;
@@ -32,7 +35,7 @@ class ResultScraperServiceTest {
     openMocks(this);
     webClient = new WebClient();
 
-    resultScraperService = new ResultScraperService(resultParser);
+    resultScraperService = new ResultScraperService(resultParser, resultRepository);
   }
 
 

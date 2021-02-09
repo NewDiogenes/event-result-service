@@ -6,40 +6,31 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @JsonDeserialize
 @JsonSerialize
 public class Competition {
+
   @Id
-  private String uid;
-  private String id;
+  @GeneratedValue
+  private Integer uid;
   private String competitionDate;
   private String name;
 
-  @OneToMany
+  @OneToMany(cascade= CascadeType.ALL)
   private List<Competitor> competitors;
 
   public Competition() {
   }
 
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public String getUid() {
+  public Integer getUid() {
     return uid;
   }
 
-  public void setUid(String uid) {
+  public void setUid(Integer uid) {
     this.uid = uid;
   }
 
@@ -71,7 +62,6 @@ public class Competition {
   public String toString() {
     return new ToStringBuilder(this)
         .append("uid", uid)
-        .append("id", id)
         .append("competitionDate", competitionDate)
         .append("name", name)
         .append("competitors", competitors)
@@ -86,11 +76,11 @@ public class Competition {
 
     Competition that = (Competition) o;
 
-    return new EqualsBuilder().append(uid, that.uid).append(id, that.id).append(competitionDate, that.competitionDate).append(name, that.name).append(competitors, that.competitors).isEquals();
+    return new EqualsBuilder().append(uid, that.uid).append(competitionDate, that.competitionDate).append(name, that.name).append(competitors, that.competitors).isEquals();
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(17, 37).append(uid).append(id).append(competitionDate).append(name).append(competitors).toHashCode();
+    return new HashCodeBuilder(17, 37).append(uid).append(competitionDate).append(name).append(competitors).toHashCode();
   }
 }

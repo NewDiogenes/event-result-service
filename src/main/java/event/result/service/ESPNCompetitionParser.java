@@ -19,7 +19,7 @@ public class ESPNCompetitionParser {
 
     competition.setName(getCompetitionName(domNode, homeCompetitor, awayCompetitor));
 
-    String competitionDateTime = domNode.querySelector(GAME_DATETIME_SELECTOR).getTextContent();
+    String competitionDateTime = domNode.querySelector(GAME_DATETIME_SELECTOR).getAttributes().getNamedItem("data-date").getTextContent();
     competition.setCompetitionDate(competitionDateTime);
 
     competition.setCompetitors(List.of(homeCompetitor, awayCompetitor));
