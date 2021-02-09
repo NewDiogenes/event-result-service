@@ -23,7 +23,7 @@ public class EventResultIntegrationTest {
 
   @Test
   void results_shouldReturnDefaultCompetitionsWhenCalled() throws IOException {
-    String response = restTemplate.getForObject("http://localhost:" + port + "/competition", String.class);
+    String response = restTemplate.getForObject("http://localhost:" + port + "/competition/results", String.class);
 
     assertEquals(getExpectedValueFromFile("src/test/resources/expected-return.json"), response);
   }

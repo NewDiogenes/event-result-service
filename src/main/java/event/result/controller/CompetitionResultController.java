@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/competition")
 public class CompetitionResultController {
   private CompetitionResultsService competitionResultsService;
 
@@ -17,7 +17,7 @@ public class CompetitionResultController {
     this.competitionResultsService = competitionResultsService;
   }
 
-  @GetMapping(value = "/competition")
+  @GetMapping(value = "/results")
   public List<Competition> getResults() {
     return competitionResultsService.getAllCompetitions();
   }

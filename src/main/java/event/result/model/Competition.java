@@ -2,6 +2,7 @@ package event.result.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -62,5 +63,16 @@ public class Competition {
 
   public void setCompetitors(List<Competitor> competitors) {
     this.competitors = competitors;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+        .append("uid", uid)
+        .append("id", id)
+        .append("competitionDate", competitionDate)
+        .append("name", name)
+        .append("competitors", competitors)
+        .toString();
   }
 }

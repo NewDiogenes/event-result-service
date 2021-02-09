@@ -2,6 +2,7 @@ package event.result.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,10 +13,13 @@ import javax.persistence.ManyToOne;
 @JsonDeserialize
 @JsonSerialize
 public class Competitor {
+
+  public static String HOME_TEAM = "home";
+  public static String AWAY_TEAM = "away";
+
   @Id
   @GeneratedValue
   private Integer id;
-  private String type;
   private Integer score;
   private String homeAway;
   private Boolean isWinner;
@@ -32,14 +36,6 @@ public class Competitor {
 
   public void setId(Integer id) {
     this.id = id;
-  }
-
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
   }
 
   public Integer getScore() {
@@ -72,5 +68,16 @@ public class Competitor {
 
   public void setTeam(Team team) {
     this.team = team;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+        .append("id", id)
+        .append("score", score)
+        .append("homeAway", homeAway)
+        .append("isWinner", isWinner)
+        .append("team", team)
+        .toString();
   }
 }

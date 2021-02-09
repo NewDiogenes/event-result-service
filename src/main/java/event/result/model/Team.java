@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -13,9 +15,11 @@ import javax.persistence.Id;
 @JsonSerialize
 public class Team {
   @Id
+  @GeneratedValue
   private String id;
-  private String uid;
-  private String name;
+  private String shortName;
+  private String longName;
+  private String abbreviatedName;
 
   public Team() {
   }
@@ -28,19 +32,27 @@ public class Team {
     this.id = id;
   }
 
-  public String getUid() {
-    return uid;
+  public String getShortName() {
+    return shortName;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setShortName(String shortName) {
+    this.shortName = shortName;
   }
 
-  public String getName() {
-    return name;
+  public String getLongName() {
+    return longName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setLongName(String longName) {
+    this.longName = longName;
+  }
+
+  public String getAbbreviatedName() {
+    return abbreviatedName;
+  }
+
+  public void setAbbreviatedName(String abbreviatedName) {
+    this.abbreviatedName = abbreviatedName;
   }
 }

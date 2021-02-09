@@ -19,6 +19,7 @@ dependencies {
   compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.+'
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   runtimeOnly 'com.h2database:h2'
+  compile 'net.sourceforge.htmlunit:htmlunit'
 }
 
 test {
