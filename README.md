@@ -7,45 +7,42 @@ Description
 - This Application is a proof of concept for an API that would return the results of a sporting competition when queried
 - The API was modelled after ESPN's own results API (although only containing a small fraction of the overall number of
   fields), in order to reduce the work that would be required to interface the two at a latter date.
-- At this point, there is no method to add more entries to the database, the service returns only the data it loads
-during start up.
 
 Example Input and Output
 ------------------------
 
 Example Input
 
-    curl localhost:8080/competition
+    curl localhost:8080/competition/results
 
 Expected Output:
 
     [{
-      "uid": "match1",
-      "id": "match1",
-      "competitionDate": "2021-1-1",
+      "uid": 1",
+      "competitionDate": "2021-02-08T20:00:00Z",
       "name": "Match 1",
       "competitors": [
           {
               "id": 1,
-              "type": "team",
               "score": 111,
               "homeAway": "away",
               "team": {
-                  "id": "team1",
-                  "uid": "team1",
-                  "name": "Team 1"
+                  "id": 1,
+                  "shortName": "Team 1"
+                  "longName": "Team 1"
+                  "abbreviatedName": "T1"
               },
               "winner": false
           },
           {
               "id": 2,
-              "type": "team",
               "score": 222,
               "homeAway": "away",
               "team": {
-                  "id": "team2",
-                  "uid": "team2",
-                  "name": "Team 2"
+                  "id": 1,
+                  "shortName": "Team 2"
+                  "longName": "Team 2"
+                  "abbreviatedName": "T2"
               },
               "winner": false
           }
@@ -74,3 +71,7 @@ There are a few aspects of this service that would ideally be changed/improved b
   more complex use cases.
 - This service currently relies on Spring to handle http response codes in failure scenarios. Normally, this would
   be handled by the application by mapping various exception conditions to different http error codes.
+- This service has a second endpoint, which was intended to be used to initialise web scraping of the specified ESPN
+  sports page, which is not currently functional. ESPN appears to have code in place to prevent scraping, so for the
+  time being the service only has the data it scrapes from a test page (which contains html directly taken from
+  espn.com.au/football) on start up.
