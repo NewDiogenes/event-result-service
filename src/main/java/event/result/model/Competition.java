@@ -2,6 +2,8 @@ package event.result.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
@@ -74,5 +76,21 @@ public class Competition {
         .append("name", name)
         .append("competitors", competitors)
         .toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Competition that = (Competition) o;
+
+    return new EqualsBuilder().append(uid, that.uid).append(id, that.id).append(competitionDate, that.competitionDate).append(name, that.name).append(competitors, that.competitors).isEquals();
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(17, 37).append(uid).append(id).append(competitionDate).append(name).append(competitors).toHashCode();
   }
 }

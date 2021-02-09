@@ -55,4 +55,20 @@ public class Team {
   public void setAbbreviatedName(String abbreviatedName) {
     this.abbreviatedName = abbreviatedName;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Team team = (Team) o;
+
+    return new EqualsBuilder().append(id, team.id).append(shortName, team.shortName).append(longName, team.longName).append(abbreviatedName, team.abbreviatedName).isEquals();
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder(17, 37).append(id).append(shortName).append(longName).append(abbreviatedName).toHashCode();
+  }
 }
